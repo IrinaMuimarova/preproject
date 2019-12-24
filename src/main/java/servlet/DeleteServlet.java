@@ -13,13 +13,9 @@ import java.io.IOException;
 @WebServlet("/delete")
 public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            new UserServiceImpl().deleteUser(Long.parseLong(request.getParameter("id")));
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/");
-            requestDispatcher.forward(request, response);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        new UserServiceImpl().deleteUser(Long.parseLong(request.getParameter("id")));
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/");
+        requestDispatcher.forward(request, response);
 
     }
 }

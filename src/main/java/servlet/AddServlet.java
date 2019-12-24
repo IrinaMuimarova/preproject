@@ -31,7 +31,7 @@ public class AddServlet extends HttpServlet {
 }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/add.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/add.jsp");
         requestDispatcher.forward(request, response);
     }
 }

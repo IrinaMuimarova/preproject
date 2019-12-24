@@ -16,69 +16,145 @@ public class UserDAOImpl implements UserDAO {
     public UserDAOImpl() {
     }
 
-    public List<User> getAll() throws SQLException {
+    public List<User> getAll() {
         List<User> list = new ArrayList<>();
-        Statement stmt = connection.createStatement();
-        stmt.execute("select * from users");
-        ResultSet result = stmt.getResultSet();
-        while (result.next()) {
-            list.add(new User(result.getLong(1),
-                    result.getString(2),
-                    result.getString(3),
-                    result.getString(4)));
+        Statement stmt = null;
+        try {
+            stmt = connection.createStatement();
+            stmt.execute("select * from users");
+            try (ResultSet result = stmt.getResultSet()) {
+                while (result.next()) {
+                    list.add(new User(result.getLong(1),
+                            result.getString(2),
+                            result.getString(3),
+                            result.getString(4)));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        result.close();
-        stmt.close();
         return list;
     }
 
 
-    public void add(User user) throws SQLException {
-        Statement statement = connection.createStatement();
-        if (getUserByLogin(user.getLogin()) == null) {
-            statement.execute("insert into users (login, password, name) values ('" + user.getLogin() +
-                    "', '" + user.getPassword() + "','" + user.getName() + "')");
+    public void add(User user) {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            if (getUserByLogin(user.getLogin()) == null) {
+                statement.execute("insert into users (login, password, name) values ('" + user.getLogin() +
+                        "', '" + user.getPassword() + "','" + user.getName() + "')");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    private User getUserByLogin(String login) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.execute("select * from users where name='" + login + "'");
-        ResultSet resultSet = statement.getResultSet();
-        User user = null;
-        while (resultSet.next()) {
-            user = new User(resultSet.getLong(1),
-                    resultSet.getString(2)
-                    , resultSet.getString(3)
-                    , resultSet.getString(4));
+    private User getUserByLogin(String login) {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            statement.execute("select * from users where name='" + login + "'");
+            User user;
+            try (ResultSet resultSet = statement.getResultSet()) {
+                user = null;
+                while (resultSet.next()) {
+                    user = new User(resultSet.getLong(1),
+                            resultSet.getString(2)
+                            , resultSet.getString(3)
+                            , resultSet.getString(4));
+                }
+            }
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        resultSet.close();
-        statement.close();
-        return user;
     }
 
-    public void delete(long id) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.execute("delete from users where id =" + id);
-        statement.close();
+    public void delete(long id) {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            statement.execute("delete from users where id =" + id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
-    public User getUserById(Long id) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.execute("select * from users where id =" + id);
-        ResultSet resultSet = statement.getResultSet();
-        resultSet.next();
-        User user = new User(resultSet.getLong(1),
-                resultSet.getString(2),
-                resultSet.getString(3),
-                resultSet.getString(4));
-        resultSet.close();
-        statement.close();
-        return user;
+    public User getUserById(Long id) {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            statement.execute("select * from users where id =" + id);
+
+            try (ResultSet resultSet = statement.getResultSet()) {
+                resultSet.next();
+                return new User(resultSet.getLong(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            assert statement != null;
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void update(User user) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.execute("update users set name = '" + user.getName() + "', login = '" + user.getLogin() + "', password = '" + user.getPassword() + "' where id =" + user.getId());
+    public void update(User user) {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            statement.execute("update users set name = '" + user.getName() + "', login = '" + user.getLogin() + "', password = '" + user.getPassword() + "' where id =" + user.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            assert statement != null;
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -32,7 +32,7 @@ public class EditServlet extends HttpServlet {
             Long id = Long.parseLong(stringId);
             User user = new UserServiceImpl().getUserById(id);
             request.setAttribute("user", user);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/edit.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/edit.jsp");
             requestDispatcher.forward(request, response);
         } else {
             response.getWriter().write("Error");

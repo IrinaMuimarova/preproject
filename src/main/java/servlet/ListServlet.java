@@ -17,14 +17,10 @@ public class ListServlet extends HttpServlet {
     private UserServiceImpl userService = new UserServiceImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<User> list = userService.getAllUser();
-            request.setAttribute("userNames", list);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        List<User> list = userService.getAllUser();
+        request.setAttribute("userNames", list);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/list.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/list.jsp");
         requestDispatcher.forward(request, response);
     }
 }
