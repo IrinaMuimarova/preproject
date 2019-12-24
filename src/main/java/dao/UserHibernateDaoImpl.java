@@ -8,42 +8,51 @@ import util.DbConnectorHibernate;
 import java.util.List;
 
 public class UserHibernateDaoImpl implements UserDAO {
+    private Session session;
+
+    private void openSession() {
+        session = DbConnectorHibernate.getSessionFactory().openSession();
+    }
+
+    private void closeSession() {
+        session.close();
+    }
 
 
     @Override
     public List<User> getAll() {
-        Session session = DbConnectorHibernate.getSessionFactory().openSession();
+        openSession();
         return (List<User>) session.createQuery("from User u").list();
     }
 
     @Override
     public void add(User user) {
-        Session session = DbConnectorHibernate.getSessionFactory().openSession();
+        openSession();
         session.save(user);
-        session.close();
+        closeSession();
     }
 
     @Override
     public void delete(long id) {
-        Session session = DbConnectorHibernate.getSessionFactory().openSession();
+        openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(getUserById(id));
         transaction.commit();
-        session.close();
+        closeSession();
     }
 
     @Override
     public User getUserById(Long id) {
-        Session session = DbConnectorHibernate.getSessionFactory().openSession();
+        openSession();
         return session.get(User.class, id);
     }
 
     @Override
     public void update(User user) {
-        Session session = DbConnectorHibernate.getSessionFactory().openSession();
+        openSession();
         Transaction transaction = session.beginTransaction();
         session.update(user);
         transaction.commit();
-        session.close();
+        closeSession();
     }
 }
