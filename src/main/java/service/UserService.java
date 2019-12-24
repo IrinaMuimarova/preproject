@@ -1,14 +1,15 @@
-package Service;
+package service;
 
-import DAO.UserDAO;
+import dao.UserDAO;
 import model.User;
+import util.DbConnector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserService {
+public class UserService implements UserServiceInterface{
 
     public UserService() {
     }
@@ -39,31 +40,8 @@ public class UserService {
         }
     }
 
-    private static Connection getMysqlConnection() throws IllegalAccessException {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            StringBuilder url = new StringBuilder();
-
-            url.
-                    append("jdbc:mysql://").        //db type
-                    append("localhost:").           //host name
-                    append("3306/").                //port
-                    append("db_example?").          //db name
-                    append("user=root&").          //login
-                    append("password=1234").       //password
-                    append("&serverTimezone=UTC");   //setup server time
-            System.out.println("URL: " + url + "\n");
-
-            return DriverManager.getConnection(url.toString());
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new IllegalStateException();
-        }
-    }
-
     private static UserDAO getUserDAO() throws IllegalAccessException {
-        return new UserDAO(getMysqlConnection());
+        return new UserDAO(DbConnector.getMysqlConnection());
     }
 
     public void deleteUser(long id) throws IllegalAccessException {
@@ -83,7 +61,7 @@ public class UserService {
         return null;
     }
 
-    public void updateUser(User user) {
+        public void updateUser(User user) {
         try {
             getUserDAO().update(user);
         } catch (IllegalAccessException | SQLException e) {
