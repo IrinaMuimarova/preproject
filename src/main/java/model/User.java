@@ -8,13 +8,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @Column
     private Long id;
+
     @Column
     private String name;
+
     @Column
     private String password;
+
     @Column
     private String login;
 

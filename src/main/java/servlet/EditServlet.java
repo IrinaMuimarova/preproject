@@ -1,6 +1,6 @@
 package servlet;
 
-import service.UserService;
+import service.UserServiceImpl;
 import model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +20,7 @@ public class EditServlet extends HttpServlet {
         String password = request.getParameter("password");
         if (stringId != null || name != null || login != null || password != null){
             Long id = Long.parseLong(stringId);
-            new UserService().updateUser(new User(id, name, login, password));
+            new UserServiceImpl().updateUser(new User(id, name, login, password));
             response.setCharacterEncoding("utf-8");
             response.sendRedirect("/");
         }
@@ -30,7 +30,7 @@ public class EditServlet extends HttpServlet {
         String stringId = request.getParameter("id");
         if (stringId != null) {
             Long id = Long.parseLong(stringId);
-            User user = new UserService().getUserById(id);
+            User user = new UserServiceImpl().getUserById(id);
             request.setAttribute("user", user);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/edit.jsp");
             requestDispatcher.forward(request, response);

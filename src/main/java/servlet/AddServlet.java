@@ -1,8 +1,8 @@
 package servlet;
 
-import service.UserService;
+import service.UserServiceImpl;
 import model.User;
-import service.UserServiceInterface;
+import service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ public class AddServlet extends HttpServlet {
             response.getWriter().write("Заполните все поля");
         } else {
             User user = new User(name, login, password);
-            UserServiceInterface userService = new UserService();
+            UserService userService = new UserServiceImpl();
             request.setAttribute("isAdd", userService.addUser(user) ? "true" : "false");
             request.setAttribute("userName", user.getName());
             doGet(request, response);

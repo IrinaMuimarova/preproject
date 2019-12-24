@@ -1,6 +1,6 @@
 package servlet;
 
-import service.UserService;
+import service.UserServiceImpl;
 import model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -14,12 +14,7 @@ import java.util.List;
 
 @WebServlet("/")
 public class ListServlet extends HttpServlet {
-    UserService userService = new UserService();
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
+    private UserServiceImpl userService = new UserServiceImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -30,6 +25,6 @@ public class ListServlet extends HttpServlet {
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/list.jsp");
-        requestDispatcher.include(request, response);
+        requestDispatcher.forward(request, response);
     }
 }

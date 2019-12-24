@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnector {
-    public static Connection getMysqlConnection() throws IllegalAccessException {
+    public static Connection getMysqlConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
