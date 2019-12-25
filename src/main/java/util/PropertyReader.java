@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyReader {
-    public static final String PATH_TO_PROPERTIES = "C:\\preproject\\src\\main\\resources\\config.properties";
+    public static final String PATH_TO_PROPERTIES = "C:\\preproject\\src\\main\\resources\\config1.properties";
 
     public static Properties readProperty() {
         Properties prop = new Properties();

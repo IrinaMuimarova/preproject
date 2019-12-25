@@ -2,17 +2,15 @@ package factory;
 
 import util.PropertyReader;
 
-import java.util.Properties;
+import java.util.Objects;
 
 public class DaoConfiguration {
 
-    public static DaoFactory getDaoFactory(){
-        Properties prop = PropertyReader.readProperty();
+    public static DaoFactory getDaoFactory() {
+        String prop = Objects.requireNonNull(PropertyReader.readProperty()).getProperty("userDao");
         DaoFactory daoFactory = new UserHibernateDaoFactory();
-        if (prop != null) {
-            if ("JDBC".equals(prop.getProperty("userDao"))) {
-                return new UserJDBCDaoFactory();
-            }
+        if ("JDBC".equals(prop)) {
+            daoFactory = new UserJDBCDaoFactory();
         }
         return daoFactory;
     }
