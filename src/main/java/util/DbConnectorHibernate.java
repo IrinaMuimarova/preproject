@@ -17,7 +17,7 @@ public class DbConnectorHibernate {
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    private static Configuration getMySqlConfiguration() {
+    public static Configuration getMySqlConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");

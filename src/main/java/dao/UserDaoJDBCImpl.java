@@ -1,7 +1,7 @@
 package dao;
 
 import model.User;
-import util.DbConnector;
+import util.DBHelper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,10 +10,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAOImpl implements UserDAO {
-    private Connection connection = DbConnector.getMysqlConnection();
+public class UserDaoJDBCImpl implements UserDAO {
+    private Connection connection = DBHelper.getInstance().getConnection();
 
-    public UserDAOImpl() {
+    public UserDaoJDBCImpl() {
     }
 
     public List<User> getAll() {

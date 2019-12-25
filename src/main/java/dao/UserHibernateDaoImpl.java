@@ -3,7 +3,7 @@ package dao;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.DbConnectorHibernate;
+import util.DBHelper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class UserHibernateDaoImpl implements UserDAO {
     private Session session;
 
     private void openSession() {
-        session = DbConnectorHibernate.getSessionFactory().openSession();
+        session = DBHelper.getInstance().getConfiguration().buildSessionFactory().openSession();
     }
 
     private void closeSession() {

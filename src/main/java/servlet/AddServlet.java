@@ -1,8 +1,8 @@
 package servlet;
 
-import service.UserServiceImpl;
 import model.User;
 import service.UserService;
+import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
