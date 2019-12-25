@@ -1,6 +1,5 @@
 package servlet;
 
-import service.DaoConfiguration;
 import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;

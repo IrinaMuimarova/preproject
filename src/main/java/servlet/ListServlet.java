@@ -1,7 +1,6 @@
 package servlet;
 
 import model.User;
-import service.DaoConfiguration;
 import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
