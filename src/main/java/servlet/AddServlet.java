@@ -1,6 +1,7 @@
 package servlet;
 
 import model.User;
+import service.DaoConfiguration;
 import service.UserService;
 import service.UserServiceImpl;
 
