@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/")
+@WebServlet("/admin")
 public class ListServlet extends HttpServlet {
     private UserServiceImpl userService = new UserServiceImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> list = userService.getAllUser();
         request.setAttribute("userNames", list);
-
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/list.jsp");
         requestDispatcher.forward(request, response);
     }

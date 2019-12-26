@@ -10,4 +10,5 @@ public interface UserService {
     void deleteUser(long id) throws IllegalAccessException;
     User getUserById(Long id);
     void updateUser(User user);
-    }
+    User getUserByLogin(String login);
+}

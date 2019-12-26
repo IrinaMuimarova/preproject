@@ -21,20 +21,24 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public User() {
-    }
+    @Column(name = "role")
+    private String role;
 
-    public User(String name, String login, String password) {
+    public User(){}
+
+    public User(String name, String login, String password, String role) {
         this.name = name;
         this.password = password;
         this.login = login;
+        this.role = role;
     }
 
-    public User(Long id, String name, String login, String password) {
+    public User(Long id, String name, String login, String password, String role) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.login = login;
+        this.role = role;
     }
 
     public Long getId() {
@@ -63,6 +67,14 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

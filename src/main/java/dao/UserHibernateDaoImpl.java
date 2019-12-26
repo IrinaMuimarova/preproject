@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.DBHelper;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public class UserHibernateDaoImpl implements UserDAO {
@@ -54,5 +55,15 @@ public class UserHibernateDaoImpl implements UserDAO {
         session.update(user);
         transaction.commit();
         closeSession();
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        openSession();
+        Long id = (Long) session.createQuery("select id from User u where login = '" + login + "'").uniqueResult();
+        if (id != null) {
+            return session.get(User.class, id);
+        }
+        return null;
     }
 }

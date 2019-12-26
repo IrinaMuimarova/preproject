@@ -27,7 +27,8 @@ public class UserDaoJDBCImpl implements UserDAO {
                     list.add(new User(result.getLong(1),
                             result.getString(2),
                             result.getString(3),
-                            result.getString(4)));
+                            result.getString(4),
+                            result.getString(5)));
                 }
             }
 
@@ -51,8 +52,8 @@ public class UserDaoJDBCImpl implements UserDAO {
         try {
             statement = connection.createStatement();
             if (getUserByLogin(user.getLogin()) == null) {
-                statement.execute("insert into users (login, password, name) values ('" + user.getLogin() +
-                        "', '" + user.getPassword() + "','" + user.getName() + "')");
+                statement.execute("insert into users (login, password, name, role) values ('" + user.getLogin() +
+                        "', '" + user.getPassword() + "','" + user.getName() + "','" + user.getRole() + "')");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +68,7 @@ public class UserDaoJDBCImpl implements UserDAO {
         }
     }
 
-    private User getUserByLogin(String login) {
+    public User getUserByLogin(String login) {
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -79,7 +80,8 @@ public class UserDaoJDBCImpl implements UserDAO {
                     user = new User(resultSet.getLong(1),
                             resultSet.getString(2)
                             , resultSet.getString(3)
-                            , resultSet.getString(4));
+                            , resultSet.getString(4)
+                            , resultSet.getString(5));
                 }
             }
             return user;
@@ -126,7 +128,8 @@ public class UserDaoJDBCImpl implements UserDAO {
                 return new User(resultSet.getLong(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
-                        resultSet.getString(4));
+                        resultSet.getString(4),
+                        resultSet.getString(5));
             }
         } catch (SQLException e) {
             e.printStackTrace();
