@@ -1,4 +1,4 @@
-package servlet;
+package filter;
 
 import model.User;
 
@@ -23,7 +23,7 @@ public class RoleFilter implements Filter {
             chain.doFilter(req, resp);
         }
         else {
-            response.sendRedirect("/view/userCard.jsp");
+            response.sendRedirect("/");
         }
     }
 

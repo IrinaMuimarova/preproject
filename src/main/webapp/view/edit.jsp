@@ -39,9 +39,14 @@
             </label>
             <label>Role:
                 <select class="w3-select" name="role" required>
-                    <option value="${user.getRole()}" selected>Choose role</option>
-                    <option value="admin">admin</option>
-                    <option value="user">user</option>
+                    <c:if test="${user.getRole() == 'admin'}">
+                        <option value="admin" selected = selected>admin</option>
+                        <option value="user">user</option>
+                    </c:if>
+                    <c:if test="${user.getRole() == 'user'}">
+                        <option value="admin">admin</option>
+                        <option value="user" selected = selected>user</option>
+                    </c:if>
                 </select>
             </label>
             <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Edit</button>
@@ -49,7 +54,7 @@
     </div>
 
     <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
-        <button class="w3-btn w3-round-large" onclick="location.href='..'">Back to main</button>
+        <button class="w3-btn w3-round-large" onclick="location.href='/admin'">Back to main</button>
     </div>
 </body>
 </html>

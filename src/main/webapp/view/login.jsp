@@ -27,7 +27,7 @@
                 <h5>Incorrect username or password.</h5>
             </div>
         </c:if>
-        <form method="post"  class="w3-selection w3-light-grey w3-padding">
+        <form method="post" action="/login" class="w3-selection w3-light-grey w3-padding">
             <label>Login:
                 <input type="text" name="login" required class="w3-input w3-animate-input w3-border w3-round-large"
                        style="width: 30%"><br/>
