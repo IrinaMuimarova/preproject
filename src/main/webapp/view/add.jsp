@@ -31,19 +31,19 @@
         </div>
         <form method="post" class="w3-selection w3-light-grey w3-padding">
             <label>Name:
-                <input type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large"
+                <input type="text" name="name" required class="w3-input w3-animate-input w3-border w3-round-large"
                        style="width: 30%"><br/>
             </label>
             <label>Login:
-                <input type="text" name="login" class="w3-input w3-animate-input w3-border w3-round-large"
+                <input type="text" name="login" required class="w3-input w3-animate-input w3-border w3-round-large"
                        style="width: 30%"><br/>
             </label>
             <label>Password:
-                <input type="password" name="password" class="w3-input w3-animate-input w3-border w3-round-large"
+                <input type="password" name="password" required class="w3-input w3-animate-input w3-border w3-round-large"
                        style="width: 30%"><br/>
             </label>
             <label>Role:
-                <select class="w3-select" name="role">
+                <select class="w3-select" name="role" required>
                     <option value="" disabled selected>Choose role</option>
                     <option value="admin">admin</option>
                     <option value="user">user</option>

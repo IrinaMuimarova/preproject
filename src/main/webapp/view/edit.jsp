@@ -22,24 +22,24 @@
             <h2>Edit user</h2>
         </div>
         <form method="post" class="w3-selection w3-light-grey w3-padding">
-            <label>ID: <input type="text" name="id" value="${user.getId()}" disabled class="w3-input w3-animate-input w3-border w3-round-large"
+            <label>ID: <input type="text" name="id" required value="${user.getId()}" disabled class="w3-input w3-animate-input w3-border w3-round-large"
                 style="width: 30%"></label>
             <label>Name:
-                <input type="text" name="name" value="${user.getName()}" class="w3-input w3-animate-input w3-border w3-round-large"
+                <input type="text" name="name" required value="${user.getName()}" class="w3-input w3-animate-input w3-border w3-round-large"
                        style="width: 30%"><br/>
             </label>
             <label>Login:
-                <input type="text" name="login" value="${user.getLogin()}"
+                <input type="text" name="login" required value="${user.getLogin()}"
                        class="w3-input w3-animate-input w3-border w3-round-large"
                        style="width: 30%"><br/>
             </label>
             <label>Password:
-                <input type="password" name="password" value="${user.getPassword()}" class="w3-input w3-animate-input w3-border w3-round-large"
+                <input type="password" name="password" required value="${user.getPassword()}" class="w3-input w3-animate-input w3-border w3-round-large"
                        style="width: 30%"><br/>
             </label>
             <label>Role:
-                <select class="w3-select" name="role">
-                    <option value="${user.getRole()}" disabled selected>Choose role</option>
+                <select class="w3-select" name="role" required>
+                    <option value="${user.getRole()}" selected>Choose role</option>
                     <option value="admin">admin</option>
                     <option value="user">user</option>
                 </select>
