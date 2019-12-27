@@ -12,11 +12,13 @@
 <head>
     <title>User List</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="w3-light-grey">
 <div class="w3-container w3-blue-grey w3-opacity w3-right-align">
     <h1>
         <button class="w3-btn w3-round-large" onclick="location.href='/admin/add'">+</button>
+        <button class="w3-btn w3-round-large w3-large" onclick="location.href='/logOut'">Log out</button>
     </h1>
 </div>
 
@@ -35,13 +37,13 @@
                         <form action="<c:url value="/admin/edit"/>" method="get">
                             <input type="hidden" name="id" value= ${user.getId()}>
                             <th class=\"w3-right-align\">
-                                <button class="w3-btn w3-round-large w3-margin-left">Edit</button>
+                                <button class="w3-btn w3-round-small w3-margin-right"><i class="fa fa-edit w3-large"></i></button>
                             </th>
                         </form>
                         <form action="/admin/delete" method="get">
                             <input type="hidden" name="id" value=${user.getId()}>
                             <th class="w3-right-align">
-                                <button class="w3-btn w3-round-large w3-margin-left">Delete</button>
+                                <button class="w3-btn w3-round-small w3-margin-right"><i class="fa fa-trash w3-large"></i></button>
                             </th>
                         </form>
                     </tr>
@@ -54,6 +56,9 @@
                 </div>
             </c:if>
         </table>
+        <div class="w3-container w3-opacity w3-left-align w3-padding">
+            <button class="w3-btn w3-round-large" onclick="location.href='/view/userCard.jsp'">Admin</button>
+        </div>
     </div>
 </div>
 </body>

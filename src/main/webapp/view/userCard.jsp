@@ -12,7 +12,12 @@
     <title>UserCard</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
+<body class="w3-light-grey">
+<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+    <h1>
+        <button class="w3-btn w3-round-large" onclick="location.href='/logOut'">Log out</button>
+    </h1>
+</div>
 <div class="w3-card-4">
     <header class="w3-container w3-blue">
         <h1>${user.getName()}</h1>
@@ -24,7 +29,7 @@
     </div>
     <c:if test="${user.getRole() == 'admin'}">
         <div class="w3-container w3-opacity w3-left-align w3-padding">
-            <button class="w3-btn w3-round-large" onclick="location.href='/admin'">Admin</button>
+            <button class="w3-btn w3-blue w3-round-large" onclick="location.href='/admin'">Admin</button>
         </div>
     </c:if>
 </div>

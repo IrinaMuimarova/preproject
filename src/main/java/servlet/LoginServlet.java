@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet("/")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
@@ -28,22 +28,16 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("user", user);
                 request.setAttribute("user", user);
                 if (user.getRole().equals("admin")) {
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/admin");
-                    requestDispatcher.forward(request, response);
+                    response.sendRedirect("/admin");
                 } else if (user.getRole().equals("user")) {
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/userCard.jsp");
-                    requestDispatcher.forward(request, response);
+                    response.sendRedirect("/view/userCard.jsp");
                 }
-            } else {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/login.jsp");
-                request.setAttribute("isLogin", false);
-                requestDispatcher.forward(request, response);
             }
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/login.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/login.jsp");
         requestDispatcher.forward(request, response);
     }
 }
