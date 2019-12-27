@@ -22,6 +22,9 @@ public class AdminFilter implements Filter {
         if (user != null && user.getRole().equals("admin")) {
             chain.doFilter(req, resp);
         }
+        else if (user != null && user.getRole().equals("user")){
+            response.sendRedirect("/view/userCard.jsp");
+        }
         else {
             response.sendRedirect("/");
         }

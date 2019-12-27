@@ -32,6 +32,9 @@ public class LoginServlet extends HttpServlet {
                 } else if (user.getRole().equals("user")) {
                     response.sendRedirect("/view/userCard.jsp");
                 }
+            } else {
+                request.setAttribute("isLogin", false);
+                doGet(request, response);
             }
         }
     }
