@@ -57,7 +57,7 @@
             </c:if>
         </table>
         <div class="w3-container w3-opacity w3-left-align w3-padding">
-            <button class="w3-btn w3-round-large" onclick="location.href='/view/userCard.jsp'">Admin</button>
+            <button class="w3-btn w3-round-large" onclick="location.href='/view/userCard.jsp'">User Card</button>
         </div>
     </div>
 </div>

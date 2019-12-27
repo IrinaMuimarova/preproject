@@ -18,9 +18,10 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession();
-        String path = request.getContextPath();
+       // String path = request.getContextPath();
+        String path = request.getServletPath();
         User user = (User) session.getAttribute("user");
-        if (path.equals("") || path.equals("/login") || user != null) {
+        if (path.equals("/") || path.equals("/login") || user != null) {
             chain.doFilter(req, resp);
         } else {
             response.sendRedirect("/");
